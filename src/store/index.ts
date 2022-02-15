@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from "mobx";
 import { UserEntity } from "../api/interface/user";
-import { authService } from "../service/authService";
+import { authService } from "../auth/authService";
 
 class Store {
   constructor() {

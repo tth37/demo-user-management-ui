@@ -1,20 +1,50 @@
 import { observer } from "mobx-react-lite";
-import { Button } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment,
+} from "semantic-ui-react";
 import { PageErrorType } from "../../common/errorType";
-import { authService } from "../../service/authService";
+import { authService } from "../../auth/authService";
+
+import "./login.css";
 
 const Login: React.FC = () => {
   return (
-    <div>
-      This is Login Page.
-      <Button
-        onClick={() =>
-          authService.loginUser({ name: "ddd", id: 3, token: "333" })
-        }
-      >
-        login!
-      </Button>
-    </div>
+    <Grid textAlign="center" verticalAlign="middle" style={{ height: "100%" }}>
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="teal" textAlign="center"></Header>
+
+        <Segment>
+          <Form size="large">
+            <Form.Input
+              fluid
+              icon="user"
+              iconPosition="left"
+              placeholder="E-mail address"
+            />
+            <Form.Input
+              fluid
+              icon="lock"
+              iconPosition="left"
+              placeholder="Password"
+              type="password"
+            />
+
+            <Button color="teal" fluid size="large">
+              Login
+            </Button>
+          </Form>
+        </Segment>
+
+        <Message>
+          New to us? <a href="#">Sign Up</a>
+        </Message>
+      </Grid.Column>
+    </Grid>
   );
 };
 

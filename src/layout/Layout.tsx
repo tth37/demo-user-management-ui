@@ -1,9 +1,10 @@
 import { observer } from "mobx-react-lite";
+import React from "react";
 import { Link } from "react-navi";
-import { Button, Item, Menu, MenuHeader } from "semantic-ui-react";
+import { Button, Grid, Item, Menu, MenuHeader } from "semantic-ui-react";
 import NaviButton from "../components/NaviButton";
 import NaviItem from "../components/NaviItem";
-import { authService } from "../service/authService";
+import { authService } from "../auth/authService";
 import { store } from "../store";
 import ErrorBoundary from "./ErrorBoundary";
 
@@ -16,22 +17,26 @@ const Layout: React.FC<PropsType> = (props: PropsType) => {
     <div>
       <header>
         <Menu pointing right>
+          <Menu.Item header>My Website</Menu.Item>
           <NaviItem href="/">Home</NaviItem>
           {store.currentUser ? (
-            <Item
+            <Menu.Item
+              position="right"
               style={{ cursor: "pointer" }}
               onClick={() => authService.logoutUser()}
             >
               Logout
-            </Item>
+            </Menu.Item>
           ) : (
-            <NaviItem href="/login">Login</NaviItem>
+            <NaviItem href="/login" position="right">
+              Login
+            </NaviItem>
           )}
         </Menu>
       </header>
-      <main>
+      <div className="container" style={{ height: "90vh" }}>
         <ErrorBoundary>{props.children}</ErrorBoundary>
-      </main>
+      </div>
     </div>
   );
 };

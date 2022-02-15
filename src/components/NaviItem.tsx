@@ -1,8 +1,9 @@
 import { useNavigation } from "react-navi";
-import { Item } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 
 interface PropsType {
   href: string;
+  position?: "left" | "right";
   children?: any;
 }
 
@@ -10,12 +11,13 @@ const NaviItem: React.FC<PropsType> = (props) => {
   const navigation = useNavigation();
 
   return (
-    <Item
+    <Menu.Item
       style={{ cursor: "pointer" }}
       onClick={() => navigation.navigate(props.href)}
+      position={props.position}
     >
       {props.children}
-    </Item>
+    </Menu.Item>
   );
 };
 
