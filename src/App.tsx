@@ -10,21 +10,6 @@ function App() {
   const loggedIn = !!store.currentUser;
   return (
     <Router context={{ loggedIn }} routes={routes}>
-      {loggedIn ? "in!" : "out"}
-      <button
-        onClick={() => {
-          authService.logoutUser();
-        }}
-      >
-        logout
-      </button>
-      <button
-        onClick={() => {
-          authService.loginUser({ name: "233", id: 3, token: "tije" });
-        }}
-      >
-        login
-      </button>
       <Layout>
         <View />
       </Layout>
