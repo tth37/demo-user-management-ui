@@ -10,7 +10,7 @@ import {
 import { PageErrorType } from "../../common/errorType";
 import { authService } from "../../auth/authService";
 
-import "./login.css";
+import classes from "./login.module.less";
 
 const Login: React.FC = () => {
   return (
@@ -41,7 +41,10 @@ const Login: React.FC = () => {
         </Segment>
 
         <Message>
-          New to us? <a href="#">Sign Up</a>
+          New to us?{" "}
+          <a className={classes.aka} href="#">
+            Sign Up
+          </a>
         </Message>
       </Grid.Column>
     </Grid>
