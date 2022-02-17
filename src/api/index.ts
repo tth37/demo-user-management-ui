@@ -20,7 +20,7 @@ async function request<RequestDataType, ResponseDataType>(
   let res;
   console.log("Pending Request!", store.token);
   try {
-    res = await axios("http://localhost:2222" + req.path, {
+    res = await axios("https://test.tth37.xyz/api" + req.path, {
       params: req.params,
       method: req.method,
       data: req.data,
