@@ -7,12 +7,24 @@ import NaviItem from "../components/NaviItem";
 import { authService } from "../auth/authService";
 import { store } from "../store";
 import ErrorBoundary from "./ErrorBoundary";
+import { createPostRequest } from "../api";
 
 interface PropsType {
   children: any;
 }
 
+const fetchLogoutUser = createPostRequest("/auth/logoutUser");
+const fetchForceLogoutUser = createPostRequest("/auth/forceLogoutUser");
+
 const Layout: React.FC<PropsType> = (props: PropsType) => {
+  const handleClick = () => {
+    fetchLogoutUser(null);
+    authService.logoutUser();
+  };
+  const handleForceClick = () => {
+    fetchForceLogoutUser(null);
+    authService.logoutUser();
+  };
   return (
     <div>
       <header>
@@ -20,13 +32,17 @@ const Layout: React.FC<PropsType> = (props: PropsType) => {
           <Menu.Item header>My Website</Menu.Item>
           <NaviItem href="/">Home</NaviItem>
           {store.currentUser ? (
-            <Menu.Item
-              position="right"
-              style={{ cursor: "pointer" }}
-              onClick={() => authService.logoutUser()}
-            >
-              Logout
-            </Menu.Item>
+            <>
+              <Menu.Item style={{ cursor: "pointer" }} onClick={handleClick}>
+                Logout
+              </Menu.Item>
+              <Menu.Item
+                style={{ cursor: "pointer" }}
+                onClick={handleForceClick}
+              >
+                Force Logout
+              </Menu.Item>
+            </>
           ) : (
             <NaviItem href="/login" position="right">
               Login

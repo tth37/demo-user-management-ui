@@ -18,6 +18,7 @@ async function request<RequestDataType, ResponseDataType>(
   req: RequestType<RequestDataType>
 ): Promise<ResponseType<ResponseDataType>> {
   let res;
+  console.log("Pending Request!", store.token);
   try {
     res = await axios("http://localhost:2222" + req.path, {
       params: req.params,
@@ -47,6 +48,12 @@ async function request<RequestDataType, ResponseDataType>(
     case 404:
       return {
         status: "notfound",
+        errorMessage: res.data.message,
+      };
+
+    case 401:
+      return {
+        status: "unauthorized",
         errorMessage: res.data.message,
       };
 

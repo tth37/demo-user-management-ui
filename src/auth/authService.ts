@@ -16,7 +16,9 @@ class AuthService {
     const str = JSON.stringify(userWithToken);
     localStorage.setItem("user", str);
     this.currentUser = userWithToken;
-    store.setCurrentUser(this.currentUser);
+    const { token, ...user } = userWithToken;
+    store.setCurrentUser(user);
+    store.setToken(token);
   }
 
   logoutUser() {

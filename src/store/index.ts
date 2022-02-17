@@ -7,7 +7,7 @@ class Store {
     makeObservable(this);
   }
 
-  @observable token?: string;
+  @observable token?: string = authService.getCurrentUser()?.token;
 
   @action setToken(token: string) {
     this.token = token;

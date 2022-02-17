@@ -25,6 +25,5 @@ export async function validateModel<T extends object>(model: T) {
     const { property, constraints } = error;
     if (constraints) res.push({ property, errors: Object.values(constraints) });
   });
-  console.log(res);
   return res;
 }

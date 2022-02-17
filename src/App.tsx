@@ -4,16 +4,6 @@ import { observer } from "mobx-react-lite";
 import { Router, View } from "react-navi";
 import { routes } from "./route";
 import Layout from "./layout/Layout";
-import { LoginUserDto } from "./api/interface/auth";
-import { validate } from "class-validator";
-import { validateLoginUserDto, validateModel } from "./validators";
-import { useState } from "react";
-
-const model = new LoginUserDto();
-model.name = "333";
-model.password = "44";
-
-validateModel<LoginUserDto>(model);
 
 const App: React.FC = () => {
   const loggedIn = !!store.currentUser;
